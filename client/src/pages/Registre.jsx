@@ -6,14 +6,19 @@ function Registre() {
     const [password, setPassword] = useState('');
     async function register(ev) {
         ev.preventDefault();
-        const reponse = await fetch('http://localhost:4000/register', {
+        try {
+            const reponse = await fetch('http://localhost:4000/register', {
 
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-        });
-        const data = await reponse.json();
-        console.log("data  ", data)
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            console.log("reponse", reponse);
+            const data = await reponse.json();
+            console.log("data  ", data)
+
+        } catch (e) { alert('Registration failed'); }
+
     }
 
 
