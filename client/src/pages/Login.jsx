@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
+import { UserContext } from '../UserContext'
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const { setUserInfo } = useContext(UserContext);
     async function login(e) {
         e.preventDefault();
 
@@ -18,11 +20,16 @@ function Login() {
 
             });
             console.log("req avant envoyer", reponse);
-            const data = await reponse.json();
-            console.log("data  token  ", data);
+            //const data = await reponse.json();
+            //console.log("data  token  ", data);
             if (reponse.ok) {
-                console.log("hello");
-                setRedirect(true);
+                console.log("hello login");
+                reponse.json().then(data => {
+                    setUserInfo(data);
+                    setRedirect(true);
+                })
+
+
             } else {
                 alert('worng credentials')
             }

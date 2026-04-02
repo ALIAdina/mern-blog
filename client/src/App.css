@@ -58,7 +58,7 @@ div.post div.texts h2 {
 
 div.post p.info {
   margin: 10px 0;
-  color: #888;
+  color: #555050;
   font-size: .7rem;
   font-weight: bold;
   display: flex;
@@ -87,7 +87,7 @@ input {
   width: 100%;
   padding: 5px 10px;
 
-  background-color: rgb(39, 25, 25);
+  background-color: rgb(209, 197, 197);
   border: 1px solid #ddd;
   border-radius: 5px;
 }
@@ -96,7 +96,7 @@ button {
   width: 100%;
   display: block;
   border: 0;
-  color: #fff;
+  color: rgb(30, 8, 8);
   border-radius: 5px;
   padding: 7px 0;
 }

@@ -9,32 +9,30 @@ import Layout from './Layout'
 import Indexpage from './pages/indexpage'
 import Login from './pages/Login'
 import Registre from './pages/Registre'
+import { UserContextProvider } from './UserContext';
+import CreatePost from './pages/CreatePost'
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
-        <Routes>
-          <Route path='/' element={<Layout />}>
-            <Route path="" element={<Indexpage />} />
-            <Route path={'Login'} element={<Login />} />
-            <Route path={'Registre'} element={<Registre />} />
+        <UserContextProvider>
+          <Routes>
+            <Route path='/' element={<Layout />}>
+              <Route path="" element={<Indexpage />} />
+              <Route path={'Login'} element={<Login />} />
+              <Route path={'Registre'} element={<Registre />} />
+              <Route path={'Create'} element={<CreatePost/>}/>
 
-          </Route>
-          {/* <Route index element={
-            <main>
-              <Header />
+            </Route>
 
+          </Routes>
+        </UserContextProvider>
 
-              <Post />
-              <Post />
-              <Post />
-            </main>} />
-          <Route path='/Login' element={<>login page</>} />
-          <Route path='/Registre' element={<>Regsitre</>} /> */}
-        </Routes>
       </div>
 
     </>
