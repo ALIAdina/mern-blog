@@ -2,11 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Post from './Post.jsx'
+import Post from './Post.jsx';
+
 import Header from './Header'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './Layout'
-import Indexpage from './pages/indexpage'
+import Indexpage from './pages/Indexpage.jsx'
 import Login from './pages/Login'
 import Registre from './pages/Registre'
 import { UserContextProvider } from './UserContext';
