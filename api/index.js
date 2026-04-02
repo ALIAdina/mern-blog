@@ -18,9 +18,16 @@ const secret = "ihdb34cdhg34cbdhdbh";
 app.use(
   cors({
     credentials: true,
-    origin: " origin: "https://mern-blog-b18p.vercel.app",
+    origin: ["http://localhost:5173", "https://mern-blog-b18p.vercel.app"],
   })
 );
+
+// app.use(
+//   cors({
+//     origin: true,
+//     credentials: true,
+//   })
+// );
 // app
 
 app.use(cookieparser());
