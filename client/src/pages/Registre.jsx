@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-
+import { API_URL } from '../config';
 function Registre() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     async function register(ev) {
         ev.preventDefault();
         try {
-            const reponse = await fetch('http://localhost:4000/register', {
+            const reponse = await fetch(`${API_URL}/register`, {
 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

@@ -2,12 +2,13 @@ import React, { useEffect, useState, useContext } from 'react'
 
 
 import { Link } from 'react-router-dom'
-import { UserContext } from "./UserContext"
+import { UserContext } from "./UserContext";
+import { API_URL } from './config';
 
 function Header() {
     const { setUserInfo, userInfo } = useContext(UserContext);
     useEffect(() => {
-        fetch('http://localhost:4000/profile', {
+        fetch(`${API_URL}/profile`, {
             credentials: 'include',
 
         }).then(response => response.json()).then(data => {

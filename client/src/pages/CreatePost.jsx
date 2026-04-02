@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill'
 import { Navigate } from 'react-router-dom'
 
-import 'react-quill/dist/quill.snow.css'
+import 'react-quill/dist/quill.snow.css';
+import { API_URL } from '../config';
 const modules = {
   toolbar: [
     [{ header: [1, 2, 3, false] }],
@@ -33,7 +34,7 @@ function CreatePost() {
     data.set('image', file);
 
     console.log("files", file)
-    const response = await fetch('http://localhost:4000/post',
+    const response = await fetch(`${ API_URL }/post`,
       {
         method: 'POST',
         body: data,

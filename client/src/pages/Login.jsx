@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import { UserContext } from '../UserContext'
+import { UserContext } from '../UserContext';
+import { API_URL } from '../config';
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ function Login() {
 
         //try 
         {
-            const reponse = await fetch('http://localhost:4000/login', {
+            const reponse = await fetch(`{API_URL}/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
