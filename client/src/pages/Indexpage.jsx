@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import Post from '../post'
+import React, { useState } from 'react';
+import Post from "../Post.jsx";
+//import Post from '../post'
 import {useEffect} from "react";
 
 export default function Indexpage() {
