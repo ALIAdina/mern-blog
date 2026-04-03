@@ -4,7 +4,7 @@ function Post({title,summary,cover,content,createdAt,author}) {
     return (
         <div className="post">
             <div className="image">
-                <img src="{cover}"
+                <img src={'https://mern-blog-b18p.vercel.app/'+cover}
                // "https://techcrunch.com/wp-content/uploads/2022/12/airco-Large.jpeg?resize=668,393"
                  alt="" className="" />
 
