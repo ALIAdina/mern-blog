@@ -18,7 +18,11 @@ const secret = "ihdb34cdhg34cbdhdbh";
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:5173", "https://mern-blog-b18p.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://mern-blog-b18p.vercel.app",
+    ],
   })
 );
 
@@ -130,7 +134,9 @@ app.post("/post", upload.single("image"), async (req, res) => {
 
 app.get("/post", async (req, res) => {
   //const posts = await Post.find().populate("author"["username"]);
-  const posts = await Post.find().populate("author", ["username"]);
+  const posts = await Post.find()
+    .populate("author", ["username"])
+    .sort({ createdAt: -1 });
   res.json(posts);
 });
 
@@ -152,5 +158,5 @@ app.get("/post", async (req, res) => {
 //   });
 
 app.listen(4000, () => {
-  console.log("✅ Server running on http://localhost:4000");
+  console.log("✅ Server running onn http://localhost:4000");
 });
