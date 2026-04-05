@@ -83,7 +83,13 @@ app.post("/login", async (req, res) => {
     jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
       if (err) throw err;
       //res.json(req.cookies);
-      res.cookie("token", token).json({ id: userDoc._id, username });
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+        })
+        .json({ id: userDoc._id, username });
     });
   } else res.status(400).json("wrong credentiel");
 });
@@ -110,6 +116,7 @@ app.post("/logout", (req, res) => {
 //     console.log('infojj   ',req.file)
 
 //})
+/*
 app.post("/post", upload.single("image"), async (req, res) => {
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
@@ -119,6 +126,10 @@ app.post("/post", upload.single("image"), async (req, res) => {
 
   const { token } = req.cookies;
 
+
+  if (!token) {
+    return res.status(401).json("Not authenticated");
+  }
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
     const { title, summary, content } = req.body;
@@ -132,6 +143,48 @@ app.post("/post", upload.single("image"), async (req, res) => {
     res.json(postDoc);
     console.log("info   ", postDoc);
   });
+});
+*/
+
+app.post("/post", upload.single("image"), async (req, res) => {
+  try {
+    const { token } = req.cookies;
+
+    if (!token) {
+      return res.status(401).json("Not authenticated");
+    }
+
+    if (!req.file) {
+      return res.status(400).json("Image is required");
+    }
+
+    jwt.verify(token, secret, {}, async (err, info) => {
+      if (err) {
+        return res.status(401).json("Invalid token");
+      }
+
+      const { originalname, path } = req.file;
+      const parts = originalname.split(".");
+      const ext = parts[parts.length - 1];
+      const newPath = path + "." + ext;
+      fs.renameSync(path, newPath);
+
+      const { title, summary, content } = req.body;
+
+      const postDoc = await Post.create({
+        title,
+        summary,
+        content,
+        cover: newPath,
+        author: info.id,
+      });
+
+      res.json(postDoc);
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json("Server error");
+  }
 });
 
 app.get("/post", async (req, res) => {
