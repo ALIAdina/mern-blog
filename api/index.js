@@ -6,6 +6,8 @@ const bcrypt = require("bcryptjs");
 const cookieparser = require("cookie-parser");
 const app = express();
 const jwt = require("jsonwebtoken");
+//app.use(express.static("uploads"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
