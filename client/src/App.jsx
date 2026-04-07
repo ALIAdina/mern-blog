@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Post from './Post.jsx';
 
-import AuthorPosts from ".pages/AuthorPosts";
+import AuthorPosts from "./pages/AuthorPosts.jsx";
 
 
 import Header from './Header'
