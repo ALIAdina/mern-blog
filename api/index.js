@@ -164,10 +164,12 @@ app.post("/post", upload.single("image"), async (req, res) => {
       }
 
       const { originalname, path } = req.file;
+      console.log("PATH AVANT:", path);
       const parts = originalname.split(".");
       const ext = parts[parts.length - 1];
       const newPath = path + "." + ext;
       fs.renameSync(path, newPath);
+      console.log("PATH APRES:", newPath); // ✅ vérifier nom final
 
       const { title, summary, content } = req.body;
 
@@ -178,6 +180,8 @@ app.post("/post", upload.single("image"), async (req, res) => {
         cover: newPath,
         author: info.id,
       });
+
+      console.log("POST SAVE:", postDoc); // ✅ vérifier DB
 
       res.json(postDoc);
     });
