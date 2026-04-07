@@ -214,7 +214,7 @@ app.post("/post", upload.single("image"), async (req, res) => {
 
 app.get("/post", async (req, res) => {
   const { author } = req.query; // 👈 récupérer paramètre
-
+  console.log("AUTHOR QUERY:", author);
   let filter = {};
 
   if (author) {
@@ -225,6 +225,7 @@ app.get("/post", async (req, res) => {
     .populate("author", ["username"])
     .sort({ createdAt: -1 });
 
+  console.log("FILTER:", filter);
   console.log("POSTS:", posts);
 
   res.json(posts);
