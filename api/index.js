@@ -196,6 +196,16 @@ app.get("/post", async (req, res) => {
   const posts = await Post.find()
     .populate("author", ["username"])
     .sort({ createdAt: -1 });
+  app.get("/post", async (req, res) => {
+    const posts = await Post.find()
+      .populate("author", ["username"])
+      .sort({ createdAt: -1 });
+
+    console.log("POSTS:", posts); // 👈 regarde cover
+
+    res.json(posts);
+  });
+
   res.json(posts);
 });
 
