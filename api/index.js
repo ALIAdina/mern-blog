@@ -10,7 +10,13 @@ const jwt = require("jsonwebtoken");
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+//const upload = multer({ dest: "uploads/" });
+// STATIC FILES
+app.use("/uploads", express.static("/uploads"));
+
+// MULTER
+const upload = multer({ dest: "/uploads/" });
+
 const fs = require("fs");
 const Post = require("./models/Post");
 const secret = "ihdb34cdhg34cbdhdbh";
