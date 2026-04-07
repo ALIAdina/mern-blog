@@ -4,6 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Post from './Post.jsx';
 
+import AuthorPosts from ".pages/AuthorPosts";
+
+
 import Header from './Header'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './Layout'
@@ -28,6 +31,7 @@ function App() {
               <Route path={'Login'} element={<Login />} />
               <Route path={'Registre'} element={<Registre />} />
               <Route path={'Create'} element={<CreatePost/>}/>
+              <Route path="/author/:id" element={<AuthorPosts />} />
 
             </Route>
 

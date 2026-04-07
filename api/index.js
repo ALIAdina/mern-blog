@@ -202,12 +202,30 @@ app.post("/post", upload.single("image"), async (req, res) => {
 //   const posts = await Post.find()
 //     .populate("author", ["username"])
 //     .sort({ createdAt: -1 });
-app.get("/post", async (req, res) => {
+/*app.get("/post", async (req, res) => {
   const posts = await Post.find()
     .populate("author", ["username"])
     .sort({ createdAt: -1 });
 
   console.log("POSTS:", posts); // 👈 regarde cover
+
+  res.json(posts);
+});*/
+
+app.get("/post", async (req, res) => {
+  const { author } = req.query; // 👈 récupérer paramètre
+
+  let filter = {};
+
+  if (author) {
+    filter.author = author; // 👈 filtrer par auteur
+  }
+
+  const posts = await Post.find(filter)
+    .populate("author", ["username"])
+    .sort({ createdAt: -1 });
+
+  console.log("POSTS:", posts);
 
   res.json(posts);
 });

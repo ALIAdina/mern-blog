@@ -12,7 +12,9 @@ function Post({title,summary,cover,content,createdAt,author}) {
             <div className='texts'>
                 <h2 className="">{title}</h2>
                 <p className="info">
-                    <a href="" className="author">{author?.username}</a>
+                    <a href={`/author/${author?._id}`} className="author">
+                         {author?.username}
+                    </a>
                     <time>{new Date(createdAt).toLocaleString()}</time>
 
                 </p>
