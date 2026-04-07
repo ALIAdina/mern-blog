@@ -7,7 +7,7 @@ const cookieparser = require("cookie-parser");
 const app = express();
 const jwt = require("jsonwebtoken");
 //app.use(express.static("uploads"));
-app.use("/uploads", express.static(__dirname + "/uploads"));
+//app.use("/uploads", express.static(__dirname + "/uploads"));
 
 const multer = require("multer");
 //const upload = multer({ dest: "uploads/" });
@@ -197,20 +197,17 @@ app.post("/post", upload.single("image"), async (req, res) => {
   }
 });
 
+// app.get("/post", async (req, res) => {
+//   //const posts = await Post.find().populate("author"["username"]);
+//   const posts = await Post.find()
+//     .populate("author", ["username"])
+//     .sort({ createdAt: -1 });
 app.get("/post", async (req, res) => {
-  //const posts = await Post.find().populate("author"["username"]);
   const posts = await Post.find()
     .populate("author", ["username"])
     .sort({ createdAt: -1 });
-  app.get("/post", async (req, res) => {
-    const posts = await Post.find()
-      .populate("author", ["username"])
-      .sort({ createdAt: -1 });
 
-    console.log("POSTS:", posts); // 👈 regarde cover
-
-    res.json(posts);
-  });
+  console.log("POSTS:", posts); // 👈 regarde cover
 
   res.json(posts);
 });
