@@ -9,15 +9,37 @@ const jwt = require("jsonwebtoken");
 //app.use(express.static("uploads"));
 //app.use("/uploads", express.static(__dirname + "/uploads"));
 
-const multer = require("multer");
+//const multer = require("multer");
 //const upload = multer({ dest: "uploads/" });
 // STATIC FILES
-app.use("/uploads", express.static("/uploads"));
+//app.use("/uploads", express.static("/uploads"));
 
 // MULTER
-const upload = multer({ dest: "/uploads/" });
+//const upload = multer({ dest: "/uploads/" });
 
-const fs = require("fs");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer");
+
+// Configuration
+cloudinary.config({
+  cloud_name: "deehcocsv",
+  api_key: "832645526913355",
+  api_secret: "<your_api_secret>", // Click 'View API Keys' above to copy your API secret
+});
+
+// storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "mern-blog",
+    allowed_formats: ["jpg", "png", "jpeg"],
+  },
+});
+
+const upload = multer({ storage });
+
+//const fs = require("fs");
 const Post = require("./models/Post");
 const secret = "ihdb34cdhg34cbdhdbh";
 
@@ -169,21 +191,13 @@ app.post("/post", upload.single("image"), async (req, res) => {
         return res.status(401).json("Invalid token");
       }
 
-      const { originalname, path } = req.file;
-      console.log("PATH AVANT:", path);
-      const parts = originalname.split(".");
-      const ext = parts[parts.length - 1];
-      const newPath = path + "." + ext;
-      fs.renameSync(path, newPath);
-      console.log("PATH APRES:", newPath); // ✅ vérifier nom final
-
       const { title, summary, content } = req.body;
 
       const postDoc = await Post.create({
         title,
         summary,
         content,
-        cover: newPath,
+        cover: req.file.path,
         author: info.id,
       });
 

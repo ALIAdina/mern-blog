@@ -4,9 +4,7 @@ function Post({title,summary,cover,content,createdAt,author}) {
     return (
         <div className="post">
             <div className="image">
-                <img src={'https://mern-blog-1-ag6j.onrender.com/' + cover} 
-               // "https://techcrunch.com/wp-content/uploads/2022/12/airco-Large.jpeg?resize=668,393"
-                 alt="" className="" />
+            <img src={cover} alt="" />
 
             </div>
             <div className='texts'>
