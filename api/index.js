@@ -25,7 +25,7 @@ const multer = require("multer");
 cloudinary.config({
   cloud_name: "deehcocsv",
   api_key: "832645526913355",
-  api_secret: "<your_api_secret>", // Click 'View API Keys' above to copy your API secret
+  api_secret: "tbVkbjxu2KZgk0gn0qgZl7Qhj0M",
 });
 
 // storage
