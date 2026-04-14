@@ -50,7 +50,7 @@ function Login() {
             <h1>login</h1>
             <input type="text" placeholder='username' value={username} onChange={(e) => { setUsername(e.target.value) }} />
             < input type="password" placeholder='password' value={password} onChange={(e) => { setPassword(e.target.value) }} />
-            <button>login</button>
+            <button>loginn</button>
 
         </form >
     )
