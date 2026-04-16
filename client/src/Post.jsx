@@ -17,6 +17,7 @@ function Post({title,summary,cover,content,createdAt,author}) {
 
                 </p>
                 <p className='summary'>{summary}</p>
+                <div dangerouslySetInnerHTML={{ __html: content }} />
 
             </div>
         </div>
