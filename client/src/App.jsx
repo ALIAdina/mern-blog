@@ -11,10 +11,11 @@ import Header from './Header'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './Layout'
 import Indexpage from './pages/Indexpage.jsx'
-import Login from './pages/Login'
-import Registre from './pages/Registre'
+import Login from './pages/Login.jsx'
+import Registre from './pages/Registre.jsx'
 import { UserContextProvider } from './UserContext';
-import CreatePost from './pages/CreatePost'
+import CreatePost from './pages/CreatePost';
+import PostPage from "./pages/PostPage.jsx";
 
 
 
@@ -32,7 +33,7 @@ function App() {
               <Route path={'Registre'} element={<Registre />} />
               <Route path={'Create'} element={<CreatePost/>}/>
               <Route path="/author/:id" element={<AuthorPosts />} />
-
+              <Route path="/post/:id" element={<PostPage/>} />
             </Route>
 
           </Routes>

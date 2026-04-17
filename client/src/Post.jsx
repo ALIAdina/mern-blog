@@ -1,10 +1,14 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
-function Post({title,summary,cover,content,createdAt,author}) {
+function Post({_id,title,summary,cover,content,createdAt,author}) {
     return (
         <div className="post">
             <div className="image">
-            <img src={cover} alt="" />
+          {/* <-- <Link to={`post/${_id}`} src={cover} alt="" />--> */}
+            <Link to={`/post/${_id}`}>
+          <img src={cover} alt="" />
+        </Link>
 
             </div>
             <div className='texts'>
@@ -17,8 +21,12 @@ function Post({title,summary,cover,content,createdAt,author}) {
 
                 </p>
                 <p className='summary'>{summary}</p>
-                <div dangerouslySetInnerHTML={{ __html: content }} />
-
+              {/*  <div dangerouslySetInnerHTML={{ __html: content }} />  */}
+              <div
+  dangerouslySetInnerHTML={{
+    __html: content?.slice(0, 500) + "..."
+  }}
+/>
             </div>
         </div>
     )
